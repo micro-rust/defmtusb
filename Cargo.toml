@@ -28,3 +28,14 @@ git = "https://github.com/embassy-rs/embassy"
 [dependencies.static_cell]
 version = "^1.2"
 features = ["nightly"]
+
+
+
+[features]
+
+default = ["buffersize-256"]
+
+buffersize-128  = []
+buffersize-256  = []
+buffersize-512  = []
+buffersize-1024 = []

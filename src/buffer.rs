@@ -3,7 +3,17 @@
 
 
 /// The size of the buffer.
-const BUFFERSIZE: usize = 96;
+#[cfg(feature = "buffersize-128")]
+const BUFFERSIZE: usize = 128;
+
+#[cfg(feature = "buffersize-256")]
+const BUFFERSIZE: usize = 256;
+
+#[cfg(feature = "buffersize-512")]
+const BUFFERSIZE: usize = 512;
+
+#[cfg(feature = "buffersize-1024")]
+const BUFFERSIZE: usize = 1024;
 
 
 
