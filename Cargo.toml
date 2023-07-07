@@ -3,6 +3,28 @@ name = "defmtusb"
 version = "0.1.0"
 edition = "2021"
 
-# See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
+
+[dependencies.critical-section]
+version = "*"
+
+[dependencies.defmt]
+version = "=0.3.0"
+
+[dependencies.embassy-futures]
+version = "0.1.0"
+git = "https://github.com/embassy-rs/embassy"
+
+[dependencies.embassy-time]
+version = "0.1.0"
+features = ["defmt", "defmt-timestamp-uptime"]
+git = "https://github.com/embassy-rs/embassy"
+
+[dependencies.embassy-usb]
+version = "0.1.0"
+git = "https://github.com/embassy-rs/embassy"
+
+[dependencies.static_cell]
+version = "1.2"
+features = ["nightly"]
