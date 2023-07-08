@@ -55,7 +55,7 @@ pub async fn run<D: Driver<'static>>(driver: D, size: usize, config: Option<Conf
     };
 
     // Create the configuration.
-    let config = match config {
+    let mut config = match config {
         // Set default configuration.
         None => {
             // Create the configuration.
