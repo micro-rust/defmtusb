@@ -3,6 +3,9 @@
 
 
 /// The size of the buffer.
+#[cfg(feature = "buffersize-64")]
+const BUFFERSIZE: usize = 64;
+
 #[cfg(feature = "buffersize-128")]
 const BUFFERSIZE: usize = 128;
 

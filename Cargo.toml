@@ -48,6 +48,7 @@ features = ["nightly"]
 
 default = ["buffersize-256"]
 
+buffersize-64   = []
 buffersize-128  = []
 buffersize-256  = []
 buffersize-512  = []
