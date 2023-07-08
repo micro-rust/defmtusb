@@ -72,17 +72,17 @@ pub async fn run<D: Driver<'static>>(driver: D, size: usize, config: Option<Conf
             // Configure the max packet size.
             cfg.max_packet_size_0 = size as u8;
 
-            // Configure the device class.
-            cfg.device_class = 0x02;
-            cfg.device_sub_class = 0x02;
-            cfg.device_protocol = 0x01;
-
             cfg
         },
 
         // User provided configuration.
         Some(c) => c,
     };
+
+    // Configure the device class.
+    config.device_class = 0x02;
+    config.device_sub_class = 0x02;
+    config.device_protocol = 0x01;
 
     // Get the static buffers.
     let (devdesc, cfgdesc, bosdesc, ctrlbuf) = unsafe {(
