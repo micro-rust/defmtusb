@@ -128,29 +128,30 @@ pub async fn logger<'d, D: Driver<'d>>(mut sender: Sender<'d, D>, size: usize) {
 
     use embassy_usb::driver::EndpointError;
     
+    // Get a reference to the controller.
+    let controller = unsafe { &mut super::controller::CONTROLLER };
+
+    // Get a reference to the buffers.
+    let buffers = unsafe { &mut super::controller::BUFFERS };
 
     'main : loop {
         // Wait for the device to be connected.
         sender.wait_connection().await;
-
-        // Get a reference to the controller.
-        let controller = unsafe { &mut super::controller::CONTROLLER };
 
         // Set the controller as enabled.
         controller.enable();
 
         // Begin sending the data.
         'data : loop {
-            // Get a reference to the buffers.
-            let buffers = unsafe { &mut super::controller::BUFFERS };
 
             // Wait for new data.
             let buffer = 'select : loop {
                 // Check which buffer is flushing.
                 if buffers[0].flushing() { break 'select &mut buffers[0]; }
-                if buffers[0].flushing() { break 'select &mut buffers[0]; }
+                if buffers[1].flushing() { break 'select &mut buffers[1]; }
 
                 // Wait the timeout.
+                // TODO : Make this configurable.
                 Timer::after( Duration::from_millis(100) ).await;
             };
 
@@ -168,7 +169,7 @@ pub async fn logger<'d, D: Driver<'d>>(mut sender: Sender<'d, D>, size: usize) {
                             // Disable the controller.
                             controller.disable();
 
-                            continue 'data;
+                            continue 'main;
                         },
 
                         _ => (),

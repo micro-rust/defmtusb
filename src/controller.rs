@@ -31,7 +31,7 @@ impl Controller {
     pub const fn new() -> Self {
         Self {
             current: BufferIndex::A,
-            enabled: false,
+            enabled: true,
             ready: false,
         }
     }
