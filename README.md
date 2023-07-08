@@ -93,6 +93,11 @@ pub(super) async fn logger(usb: USB) {
 }
 ```
 
+## Planned improvements
+
+ - Configurable timeouts / poll rate
+ - Configurable behaviour when USB is disconnected
+
 ## Contributing
 
 Any contribution intentionally submitted for inclusion in the work by you shall be licensed under either the MIT License or the Mozilla Public License Version 2.0, without any additional terms and conditions.
